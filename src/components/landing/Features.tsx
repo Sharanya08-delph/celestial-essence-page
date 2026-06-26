@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Icon } from "./Icon";
 
 type IconName = React.ComponentProps<typeof Icon>["name"];
@@ -223,6 +223,3 @@ export function SectionHeader({
     </div>
   );
 }
-
-// Silence unused-import warnings for environments that strip React import.
-export const __keepEffect = useEffect;
