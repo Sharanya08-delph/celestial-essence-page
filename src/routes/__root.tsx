@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Ai SaaS landing page" },
+      { name: "description", content: "Nova AI is a premium AI SaaS landing page built with Next.js and React." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Ai SaaS landing page" },
+      { property: "og:description", content: "Nova AI is a premium AI SaaS landing page built with Next.js and React." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Ai SaaS landing page" },
+      { name: "twitter:description", content: "Nova AI is a premium AI SaaS landing page built with Next.js and React." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/fc476597-93f8-4077-8b52-80f92d259313/id-preview-7aa9cf18--fb612f9a-8250-4c51-87a4-ab616bb9777b.lovable.app-1782474714324.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/fc476597-93f8-4077-8b52-80f92d259313/id-preview-7aa9cf18--fb612f9a-8250-4c51-87a4-ab616bb9777b.lovable.app-1782474714324.png" },
     ],
     links: [
       {
