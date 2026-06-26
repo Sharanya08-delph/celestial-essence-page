@@ -4,20 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -59,29 +45,47 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-arctic: var(--arctic);
+  --color-mint: var(--mint);
+  --color-forsythia: var(--forsythia);
+  --color-saffron: var(--saffron);
+  --color-nocturnal: var(--nocturnal);
+  --color-noir: var(--noir);
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  /* Brand palette (hex from brief, kept as fallbacks):
+     Arctic Powder #F1F6F4 / Mystic Mint #D9E8E2 / Forsythia #FFC801
+     Deep Saffron #FF9932 / Nocturnal Expedition #114C5A / Oceanic Noir #172B36 */
+  --arctic: #f1f6f4;
+  --mint: #d9e8e2;
+  --forsythia: #ffc801;
+  --saffron: #ff9932;
+  --nocturnal: #114c5a;
+  --noir: #172b36;
+
+  --background: #0b1820;
+  --foreground: #f1f6f4;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --primary: #ffc801;
+  --primary-foreground: #172b36;
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
+  --muted: rgba(255,255,255,0.06);
+  --muted-foreground: #9bb3b8;
   --accent: oklch(0.968 0.007 247.896);
   --accent-foreground: oklch(0.208 0.042 265.755);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: rgba(241,246,244,0.10);
+  --input: rgba(241,246,244,0.12);
+  --ring: #ffc801;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +144,105 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(1200px 600px at 10% -10%, rgba(17,76,90,0.55), transparent 60%),
+      radial-gradient(900px 500px at 110% 10%, rgba(255,153,50,0.18), transparent 60%),
+      radial-gradient(800px 600px at 50% 120%, rgba(255,200,1,0.10), transparent 60%);
+    background-attachment: fixed;
   }
+  h1,h2,h3,h4,h5,h6 { font-family: var(--font-mono); letter-spacing: -0.02em; }
+}
+
+/* ---------- Custom utilities & animations ---------- */
+
+@utility glass {
+  background: linear-gradient(180deg, rgba(241,246,244,0.06), rgba(241,246,244,0.02));
+  border: 1px solid rgba(241,246,244,0.10);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 10px 40px -20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(241,246,244,0.06);
+}
+
+@utility glass-strong {
+  background: linear-gradient(180deg, rgba(241,246,244,0.10), rgba(241,246,244,0.03));
+  border: 1px solid rgba(241,246,244,0.14);
+  backdrop-filter: blur(22px) saturate(150%);
+}
+
+@utility text-gradient {
+  background: linear-gradient(120deg, #f1f6f4 0%, #ffc801 50%, #ff9932 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility btn-primary {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: .5rem;
+  background: linear-gradient(180deg, #ffd23a, #ffc801);
+  color: #172b36;
+  font-weight: 600;
+  padding: .75rem 1.25rem;
+  border-radius: 999px;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  box-shadow: 0 10px 30px -10px rgba(255,200,1,0.5);
+}
+@utility btn-primary {
+  &:hover { transform: translateY(-1px); filter: brightness(1.05); box-shadow: 0 16px 40px -12px rgba(255,200,1,0.6); }
+}
+
+@utility btn-ghost {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: .5rem;
+  background: rgba(241,246,244,0.05);
+  color: #f1f6f4;
+  font-weight: 500;
+  padding: .75rem 1.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(241,246,244,0.14);
+  transition: background 180ms ease, transform 180ms ease, border-color 180ms ease;
+}
+@utility btn-ghost {
+  &:hover { background: rgba(241,246,244,0.10); border-color: rgba(241,246,244,0.25); transform: translateY(-1px); }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes floaty {
+  0%,100% { transform: translateY(0) rotate(0); }
+  50%     { transform: translateY(-10px) rotate(0.5deg); }
+}
+@keyframes drift {
+  0%,100% { transform: translate3d(0,0,0); }
+  50%     { transform: translate3d(0,-14px,0); }
+}
+@keyframes shine {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes pulseRing {
+  0%   { transform: scale(0.9); opacity: .6; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+
+.animate-rise { animation: rise 700ms cubic-bezier(.2,.7,.2,1) both; }
+.animate-floaty { animation: floaty 6s ease-in-out infinite; }
+.animate-drift { animation: drift 8s ease-in-out infinite; }
+.animate-spin-slow { animation: spinSlow 24s linear infinite; }
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(241,246,244,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(241,246,244,0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
 }
