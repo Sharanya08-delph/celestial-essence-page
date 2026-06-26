@@ -187,8 +187,6 @@
   border-radius: 999px;
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
   box-shadow: 0 10px 30px -10px rgba(255,200,1,0.5);
-}
-@utility btn-primary {
   &:hover { transform: translateY(-1px); filter: brightness(1.05); box-shadow: 0 16px 40px -12px rgba(255,200,1,0.6); }
 }
 
@@ -202,8 +200,6 @@
   border-radius: 999px;
   border: 1px solid rgba(241,246,244,0.14);
   transition: background 180ms ease, transform 180ms ease, border-color 180ms ease;
-}
-@utility btn-ghost {
   &:hover { background: rgba(241,246,244,0.10); border-color: rgba(241,246,244,0.25); transform: translateY(-1px); }
 }
 
